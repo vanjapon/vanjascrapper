@@ -5,6 +5,22 @@ from datetime import datetime, timedelta
 import schedule
 import time
 
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "I'm alive"
+
+def run():
+    app.run(host='0.0.0.0', port=80)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
 # Replace 'YOUR_BOT_TOKEN' with your actual bot token
 TOKEN = '6876479906:AAEdUWWK_Gatv2t0PG5yi4ruYNSoLci2Swg'
 bot = telebot.TeleBot(TOKEN)
@@ -94,6 +110,7 @@ def generate_and_send_bin():
         bot.send_message('-1001920264809', output, parse_mode='Markdown')
 
 if __name__ == "__main__":
+  keep_alive()
   while True:
         schedule.run_pending()
         time.sleep(1)
