@@ -84,7 +84,7 @@ def generate_non_expired_date():
     return f'{expiration_month:02d}|{expiration_year}'
 
 # Schedule the task to generate a BIN every 5 seconds
-schedule.every(10).seconds.do(lambda: generate_and_send_bin())
+schedule.every(1).seconds.do(lambda: generate_and_send_bin())
 
 def generate_and_send_bin():
     # Get a valid BIN
@@ -113,4 +113,4 @@ if __name__ == "__main__":
   keep_alive()
   while True:
         schedule.run_pending()
-        time.sleep(0.1)
+        time.sleep(1)
