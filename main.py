@@ -22,7 +22,7 @@ def keep_alive():
     t.start()
 
 # Replace 'YOUR_BOT_TOKEN' with your actual bot token
-TOKEN = '6876479906:AAEdUWWK_Gatv2t0PG5yi4ruYNSoLci2Swg'
+TOKEN = 'YOUR_BOT_TOKEN'
 bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['generate_bin'])
@@ -83,9 +83,6 @@ def generate_non_expired_date():
 
     return f'{expiration_month:02d}|{expiration_year}'
 
-# Schedule the task to generate a BIN every 5 seconds
-schedule.every(1).seconds.do(generate_and_send_bin)
-
 def generate_and_send_bin():
     # Get a valid BIN
     bin_number = get_valid_bin()
@@ -110,7 +107,8 @@ def generate_and_send_bin():
         bot.send_message('-1001920264809', output, parse_mode='Markdown')
 
 if __name__ == "__main__":
-  keep_alive()
-  while True:
+    keep_alive()
+    schedule.every(1).seconds.do(generate_and_send_bin)
+    while True:
         schedule.run_pending()
         time.sleep(1)
