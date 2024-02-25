@@ -47,7 +47,7 @@ def generate_bin(message):
         output = f'**VANJA SCRAPPER**\n-----------------------------------------------\nBIN: {result}\nCOUNTRY: {bin_info["country"]}\nBANK: {bin_info["bank"]}\nCARD TYPE: {bin_info["card_type"].upper()}\n-----------------------------------------------\nVANJA SCRAPPER'
 
         # Send the result to the channel (replace 'CHANNEL_ID' with your actual channel ID)
-        bot.send_message('CHANNEL_ID', output, parse_mode='Markdown')
+        bot.send_message('-1001920264809', output, parse_mode='Markdown')
     else:
         bot.send_message(message.chat.id, "Unknown BIN or Bank. Please try again.")
 
